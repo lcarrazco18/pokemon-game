@@ -1,3 +1,7 @@
+var gameState = {
+  pokemon: ''
+}
+console.log(gameState)
 var pokemonsEL = document.querySelector('.select-screen').querySelectorAll('.character')
 
 console.log(pokemonsEL)
@@ -7,7 +11,11 @@ var i = 0;
 while (i < pokemonsEL.length) {
   pokemonsEL[i].onclick = function() {
     var pokemonName = this.dataset.pokemon
-    console.log('I pressed this pokemon ' + pokemonName)
+    // console.log('I pressed this pokemon ' + pokemonName)
+    gameState.pokemon = pokemonName
+
+    console.log(gameState)
+  
   }
   i++
 }
