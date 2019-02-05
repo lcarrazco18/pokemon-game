@@ -1,12 +1,13 @@
 var pokemonsEL = document.querySelector('.select-screen').querySelectorAll('.character')
 
-// console.log(pokemonsEL)
+console.log(pokemonsEL)
 
 var i = 0;
 
 while (i < pokemonsEL.length) {
-  pokemonsEL[i].onClick = function() {
-    console.log('I pressed this pokemon')
+  pokemonsEL[i].onclick = function() {
+    var pokemonName = this.dataset.pokemon
+    console.log('I pressed this pokemon ' + pokemonName)
   }
   i++
 }
