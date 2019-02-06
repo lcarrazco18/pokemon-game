@@ -3,16 +3,20 @@ var gameState = {
   rivalPokemon: ''
 }
 console.log(gameState)
-var pokemonsEL = document.querySelector('.select-screen').querySelectorAll('.character')
-console.log(pokemonsEL)
+var pokemonsEl = document.querySelector('.select-screen').querySelectorAll('.character')
+console.log(pokemonsEl)
+
+var battleScreenEl = document.getElementById('.select-screen');
 var i = 0;
 
-while (i < pokemonsEL.length) {
-  pokemonsEL[i].onclick = function () {
+while (i < pokemonsEl.length) {
+  pokemonsEl[i].onclick = function () {
     var pokemonName = this.dataset.pokemon
     gameState.userPokemon = pokemonName
 
     cpuPick()
+    battleScreenEl.classList.toggle('active');
+
     console.log(gameState)
 
   }
@@ -24,7 +28,7 @@ function randomNumber(min, max) {
 }
 
 function cpuPick() {
-  gameState.rivalPokemon = pokemonsEL[randomNumber(0, 3)].dataset.pokemon
+  gameState.rivalPokemon = pokemonsEl[randomNumber(0, 3)].dataset.pokemon
 }
 
 
