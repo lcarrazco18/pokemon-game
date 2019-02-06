@@ -18,7 +18,12 @@ while (i < pokemonsEL.length) {
   i++
 }
 
+function randomNumber(min, max) {
+  
+}
+function cpuPick() {
 
+}
 
 
 
