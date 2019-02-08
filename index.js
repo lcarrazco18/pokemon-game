@@ -11,16 +11,16 @@ let i = 0;
 
 while (i < pokemonsEl.length) {
   pokemonsEl[i].onclick = function () {
-    let pokemonName = this.dataset.pokemon
-    gameState.userPokemon = pokemonName
+    let pokemonName = this.dataset.pokemon;
+    gameState.userPokemon = pokemonName;
 
     cpuPick();
-    battleScreenEl.classList.toggle(active);
+    battleScreenEl.classList.toggle('active');
 
     console.log(gameState);
 
   };
-  i++;
+i++;
 }
 
 function randomNumber(min, max) {
