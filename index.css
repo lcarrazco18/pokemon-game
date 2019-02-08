@@ -11,6 +11,7 @@ body {
   width: 100%;
   overflow: hidden;
 }
+
 /* SELECT SCREEN ============================================================*/
 .header {
   background: #0a0618;
@@ -89,7 +90,7 @@ body {
   float: left;
   margin: 0 25px;
   cursor: pointer;
-  transition: background .3s ease-in-out
+  transition: background .3s ease-in-out;
 }
 
 
