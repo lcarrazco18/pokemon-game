@@ -126,7 +126,7 @@ body {
   transition: all .5s ease-in-out;
 }
 
-#battle-screen::active{
+#battle-screen.active {
   top: -100vh;
 }
 
