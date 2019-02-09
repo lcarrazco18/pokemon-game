@@ -1,26 +1,62 @@
-const gameState = {
+var pokemonDB = [{
+    name: 'charmander',
+    type: 'fire',
+    hp: 39,
+    attack: 52,
+    defense: 43,
+    level: 1,
+    img: 'http://www.smogon.com/dex/media/sprites/xy/charmander.gif'
+  },
+  {
+    name: 'bulbasaur',
+    type: 'fire',
+    hp: 45,
+    attack: 49,
+    defense: 49,
+    level: 1,
+    img: 'http://www.smogon.com/dex/media/sprites/xy/bulbasaur.gif'
+  },
+  {
+    name: 'squirtle',
+    type: 'water',
+    hp: 44,
+    attack: 48,
+    defense: 65,
+    level: 1,
+    img: 'http://www.smogon.com/dex/media/sprites/xy/squirtle.gif'
+  },
+];
+
+var gameState = {
   userPokemon: '',
   rivalPokemon: '',
 };
 
 console.log(gameState);
-const pokemonsEl = document.querySelector('.select-screen').querySelectorAll('.character');
+var pokemonsEl = document.querySelector('.select-screen').querySelectorAll('.character');
 console.log(pokemonsEl);
-const battleScreenEl = document.getElementById('battle-screen');
-let i = 0;
+var battleScreenEl = document.getElementById('battle-screen');
+var i = 0;
 
 while (i < pokemonsEl.length) {
   pokemonsEl[i].onclick = function () {
-    let pokemonName = this.dataset.pokemon;
+    var pokemonName = this.dataset.pokemon;
+    var player1Img = document.querySelector('.player1').getElementsByTagName('img');
     gameState.userPokemon = pokemonName;
 
     cpuPick();
     battleScreenEl.classList.toggle('active');
-
-    console.log(gameState);
+    player1Img[0].src = 'http://www.smogon.com/dex/media/sprites/xy/squirtle.gif'
+    
+    var currentPokemon = pokemonDB.filter(funtion(pokemon){
+      return pokemon.name == pokemonName;
+    })
+    
+    
+    console.log(player1Img[0]);
 
   };
-i++;
+  i++;
 }
 
 function randomNumber(min, max) {
@@ -63,12 +99,12 @@ function cpuPick() {
 //   var attack = 20;
 //   var level = 10;
 //   var stack = 1.3;
-//   var stamina = 39;
+//   var defense = 39;
 //   // create a formula for attacks
 //   console.log((attack * level ) * stack / 7)
 //   // create a formula for health
 //   //HP = 0.20 x Sqrt(Pokemon_level) x (HP_base_stat)
-//   console.log(((0.20 * Math.sqrt(level)) * stamina) * 15)
+//   console.log(((0.20 * Math.sqrt(level)) * defense) * 15)
 //   // let user choose 1 and then assign a random pokemon to battle thats not the users pokemon
 //   // p1 vs p2
 //   // when one user loses all his health declare a winner
