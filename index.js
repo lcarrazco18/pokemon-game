@@ -25,47 +25,47 @@ var pokemonDB = [{
     level: 1,
     img: 'http://www.smogon.com/dex/media/sprites/xy/squirtle.gif'
   },
-];
+]
 
 var gameState = {
   userPokemon: '',
-  rivalPokemon: '',
-};
+  rivalPokemon: ''
+}
 
-console.log(gameState);
-var pokemonsEl = document.querySelector('.select-screen').querySelectorAll('.character');
-console.log(pokemonsEl);
-var battleScreenEl = document.getElementById('battle-screen');
-var i = 0;
+console.log(gameState)
+var pokemonsEl = document.querySelector('.select-screen').querySelectorAll('.character')
+console.log(pokemonsEl)
+var battleScreenEl = document.getElementById('battle-screen')
+var i = 0
 
 while (i < pokemonsEl.length) {
-  pokemonsEl[i].onclick = function () {
-    var pokemonName = this.dataset.pokemon;
-    var player1Img = document.querySelector('.player1').getElementsByTagName('img');
-    gameState.userPokemon = pokemonName;
+  pokemonsEl[i].onclick = function() {
+    var pokemonName = this.dataset.pokemon
+    var player1Img = document.querySelector('.player1').getElementsByTagName('img')
+    gameState.userPokemon = pokemonName
 
-    cpuPick();
-    battleScreenEl.classList.toggle('active');
+    cpuPick()
+    battleScreenEl.classList.toggle('active')
+    
     player1Img[0].src = 'http://www.smogon.com/dex/media/sprites/xy/squirtle.gif'
     
-    var currentPokemon = pokemonDB.filter(funtion(pokemon){
-      return pokemon.name == pokemonName;
-    })
+    var currentPokemon = pokemonDB.filter(function(pokemon){
+      return pokemon.name == gameState.userPokemon
+    )}   
     
-    
-    console.log(player1Img[0]);
+    console.log(currentPokemon)
 
-  };
-  i++;
+  }
+  i++
 }
 
 function randomNumber(min, max) {
-  return Math.floor(Math.random() * (max - min)) + min;
+  return Math.floor(Math.random() * (max - min)) + min
 }
 
 function cpuPick() {
 
-  gameState.rivalPokemon = pokemonsEl[randomNumber(0, 3)].dataset.pokemon;
+  gameState.rivalPokemon = pokemonsEl[randomNumber(0, 3)].dataset.pokemon
 }
 
 
