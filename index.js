@@ -71,25 +71,25 @@ while (i < pokemonsEl.length) {
     })
   player2Img[0].src = currentRivalPokemon[0].img
 
-    // user choose attack
+  // user choose attack
 
 
-    // cpu health goes down
+  // cpu health goes down
 
-    // cpu attack
+  // cpu attack
 
-    // user health goes down
+  // user health goes down
 
-    // rock > scissors
+  // rock > scissors
 
-    // paper > rock
+  // paper > rock
 
-    // scissors > paper
+  // scissors > paper
 
-    // depending on pokemon type and defense is how hard the attack is going to be and how much health it will take out
+  // depending on pokemon type and defense is how hard the attack is going to be and how much health it will take out
 
 
-    // then whoever gets to health <= 0 losses
+  // then whoever gets to health <= 0 losses
 
 
 }
