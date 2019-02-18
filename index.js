@@ -38,11 +38,11 @@ console.log(gameState);
 const pokemonsEl = document.querySelector('.select-screen').querySelectorAll('.character');
 console.log(pokemonsEl);
 const battleScreenEl = document.getElementById('battle-screen');
-const attackBtnsEl = document.getElementById('battle-screen').querySelectorAll('.battle-btns');
+const attackBtnsEl = document.getElementById('battle-screen').querySelectorAll('.attack');
 console.log(attackBtnsEl);
 
 // this is the initial loop
-let i = 0;
+const i = 0;
 while (i < pokemonsEl.length) {
   // add function to all characters on screen select
   pokemonsEl[i].onclick = function () {
@@ -98,8 +98,16 @@ while (i < pokemonsEl.length) {
 
   };
   i++;
-
-
+}
+const a = 0;
+while (a < attackBtnsEl.length) {
+  attackBtnsEl[a].onclick = function () {
+    const attackName = this.dataset.attack;
+    gameState.currentUserAttack = attackName;
+    console.log(gameState.currentUserAttack);
+  };
+  a++;
+}
   const randomNumber = function (min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
   };
@@ -107,7 +115,7 @@ while (i < pokemonsEl.length) {
   const cpuPick = function () {
     gameState.rivalPokemon = pokemonsEl[randomNumber(0, 3)].dataset.pokemon;
   };
-}
+
 
 
 
