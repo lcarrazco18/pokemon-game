@@ -1,5 +1,5 @@
 // This is the database
-const pokemonDB = [{
+var pokemonDB = [{
     name: 'charmander',
     type: 'fire',
     hp: 39,
@@ -26,52 +26,52 @@ const pokemonDB = [{
     level: 1,
     img: 'http://www.smogon.com/dex/media/sprites/xy/squirtle.gif',
   },
-];
+]
 // state
-const gameState = {
+var gameState = {
   userPokemon: '',
-  rivalPokemon: '',
-};
-console.log(gameState);
+  rivalPokemon: ''
+}
+console.log(gameState)
 
 // elements
-const pokemonsEl = document.querySelector('.select-screen').querySelectorAll('.character');
-console.log(pokemonsEl);
-const battleScreenEl = document.getElementById('battle-screen');
-const attackBtnsEl = document.getElementById('battle-screen').querySelectorAll('.attack');
-console.log(attackBtnsEl);
+var pokemonsEl = document.querySelector('.select-screen').querySelectorAll('.character')
+console.log(pokemonsEl)
+var battleScreenEl = document.getElementById('battle-screen')
+var attackBtnsEl = document.getElementById('battle-screen').querySelectorAll('.attack')
+console.log(attackBtnsEl)
 
 // this is the initial loop
-const i = 0;
+var i = 0
 while (i < pokemonsEl.length) {
   // add function to all characters on screen select
   pokemonsEl[i].onclick = function () {
     // current selected pokemons name
-    const pokemonName = this.dataset.pokemon;
+    var pokemonName = this.dataset.pokemon
 
     // elements for images on battle screen
-    const player1Img = document.querySelector('.player1').getElementsByTagName('img');
-    const player2Img = document.querySelector('.player2').getElementsByTagName('img');
+    var player1Img = document.querySelector('.player1').getElementsByTagName('img')
+    var player2Img = document.querySelector('.player2').getElementsByTagName('img')
 
     // we save the current pokemon
-    gameState.userPokemon = pokemonName;
+    gameState.userPokemon = pokemonName
 
     // cpu picks a pokemon
-    cpuPick();
+    cpuPick()
     // change screen to battle scene
-    battleScreenEl.classList.toggle('active');
+    battleScreenEl.classList.toggle('active')
 
     // select data from current user pokemon
-    const currentPokemon = pokemonDB.filter(function (pokemon) {
-      return pokemon.name == gameState.userPokemon;
-    });
-    player1Img[0].src = currentPokemon[0].img;
+    var currentPokemon = pokemonDB.filter(function (pokemon) {
+      return pokemon.name == gameState.userPokemon
+    })
+    player1Img[0].src = currentPokemon[0].img
 
     // select data from current cpu pokemon
-    const currentRivalPokemon = pokemonDb.filter(function (pokemon) {
-      return pokemon.name == gameState.rivalPokemon;
-    });
-    player2Img[0].src = currentRivalPokemon[0].img;
+    var currentRivalPokemon = pokemonDb.filter(function (pokemon) {
+      return pokemon.name == gameState.rivalPokemon
+    })
+    player2Img[0].src = currentRivalPokemon[0].img
 
 
     // user choose attack
@@ -96,23 +96,55 @@ while (i < pokemonsEl.length) {
     // then whoever gets to health <= 0 losses
 
 
-  };
-  i++;
+  }
+  i++
 }
-const a = 0;
+var a = 0;
 while (a < attackBtnsEl.length) {
   attackBtnsEl[a].onclick = function () {
-    const attackName = this.dataset.attack;
-    gameState.currentUserAttack = attackName;
-    console.log(gameState.currentUserAttack);
-  };
-  a++;
+    var attackName = this.dataset.attack
+    gameState.currentUserAttack = attackName
+    
+    play(attackName, cpuAttack())
+
+  }
+  a++
 }
-  const randomNumber = function (min, max) {
+
+var cpuAttack = function() {
+  var attacks = ['rock', 'paper', 'scissors']
+
+  return attacks[randomNumber(0,3)]
+}
+
+var play = function(userAttack, cpuAttack){
+  switch(userAttack) {
+    case 'rock':
+    if (cpuAttack == 'paper'){
+      console.log('paper killed rock')
+    }
+    if (cpuAttack == 'scissors'){
+      console.log('rock killed paper')
+    }
+    if (cpuAttack == 'rock'){
+      console.log('its a draw')
+    }
+    console.log(userAttack)
+      break;
+    case 'paper':
+    console.log(userAttack)
+      break;
+      case 'scissors':
+    console.log(userAttack)
+      break;
+  }
+}
+
+  var randomNumber = function (min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
   };
 
-  const cpuPick = function () {
+  var cpuPick = function () {
     gameState.rivalPokemon = pokemonsEl[randomNumber(0, 3)].dataset.pokemon;
   };
 
