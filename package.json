@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/lcarrazco18/pokemon-game#readme",
   "devDependencies": {
-    "eslint": "^5.13.0",
+    "eslint": "^5.15.3",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.16.0"
   },
