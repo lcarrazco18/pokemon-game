@@ -6,7 +6,7 @@ var pokemonDB = [{
     attack: 52,
     defense: 43,
     level: 1,
-    img: 'http://www.smogon.com/dex/media/sprites/xy/charmander.gif',
+    img: 'http://www.smogon.com/dex/media/sprites/xy/charmander.gif'
   },
   {
     name: 'bulbasaur',
@@ -15,7 +15,7 @@ var pokemonDB = [{
     attack: 49,
     defense: 49,
     level: 1,
-    img: 'http://www.smogon.com/dex/media/sprites/xy/bulbasaur.gif',
+    img: 'http://www.smogon.com/dex/media/sprites/xy/bulbasaur.gif'
   },
   {
     name: 'squirtle',
@@ -24,8 +24,8 @@ var pokemonDB = [{
     attack: 48,
     defense: 65,
     level: 1,
-    img: 'http://www.smogon.com/dex/media/sprites/xy/squirtle.gif',
-  },
+    img: 'http://www.smogon.com/dex/media/sprites/xy/squirtle.gif'
+  }
 ]
 // state
 var gameState = {
@@ -42,7 +42,7 @@ var attackBtnsEl = document.getElementById('battle-screen').querySelectorAll('.a
 console.log(attackBtnsEl)
 
 // this is the initial loop
-var i = 0
+var i = 0;
 while (i < pokemonsEl.length) {
   // add function to all characters on screen select
   pokemonsEl[i].onclick = function () {
@@ -62,18 +62,19 @@ while (i < pokemonsEl.length) {
     battleScreenEl.classList.toggle('active')
 
     // select data from current user pokemon
-    var currentPokemon = pokemonDB.filter(function (pokemon) {
+    gameState.currentPokemon = pokemonDB.filter(function (pokemon) {
       return pokemon.name == gameState.userPokemon
     })
-    player1Img[0].src = currentPokemon[0].img
+    player1Img[0].src = gameState.currentPokemon[0].img
 
     // select data from current cpu pokemon
-    var currentRivalPokemon = pokemonDb.filter(function (pokemon) {
+    gameState.currentRivalPokemon = pokemonDb.filter(function (pokemon) {
       return pokemon.name == gameState.rivalPokemon
     })
-    player2Img[0].src = currentRivalPokemon[0].img
+    player2Img[0].src = gameState.currentRivalPokemon[0].img
 
-
+    gameState.currentPokemon[0].health = calculateInitialHealth(gameState.currentPokemon)
+    console.log(gameState)
     // user choose attack
 
 
@@ -94,59 +95,61 @@ while (i < pokemonsEl.length) {
 
 
     // then whoever gets to health <= 0 losses
-
-
   }
   i++
 }
-var a = 0;
+var a = 0
 while (a < attackBtnsEl.length) {
   attackBtnsEl[a].onclick = function () {
     var attackName = this.dataset.attack
     gameState.currentUserAttack = attackName
-    
-    play(attackName, cpuAttack())
 
+    play(attackName, cpuAttack())
   }
   a++
 }
 
-var cpuAttack = function() {
+var cpuAttack = function () {
   var attacks = ['rock', 'paper', 'scissors']
 
-  return attacks[randomNumber(0,3)]
+  return attacks[randomNumber(0, 3)]
 }
 
-var play = function(userAttack, cpuAttack){
-  switch(userAttack) {
+var calculateHealth = function(user){
+  
+  return ((0.20 * Math.sqrt(user[0].level)) * user[0].defense) * user[0].hp
+}
+
+var play = function (userAttack, cpuAttack) {
+  switch (userAttack) {
     case 'rock':
-    if (cpuAttack == 'paper'){
-      console.log('paper killed rock')
-    }
-    if (cpuAttack == 'scissors'){
-      console.log('rock killed paper')
-    }
-    if (cpuAttack == 'rock'){
-      console.log('its a draw')
-    }
-    console.log(userAttack)
+      if (cpuAttack == 'paper') {
+        console.log('paper killed rock')
+      }
+      if (cpuAttack == 'scissors') {
+        console.log('rock killed paper')
+      }
+      if (cpuAttack == 'rock') {
+        console.log('its a draw')
+      }
+      console.log(userAttack)
       break;
     case 'paper':
-    console.log(userAttack)
+      console.log(userAttack)
       break;
-      case 'scissors':
-    console.log(userAttack)
+    case 'scissors':
+      console.log(userAttack)
       break;
   }
 }
 
-  var randomNumber = function (min, max) {
-    return Math.floor(Math.random() * (max - min)) + min;
-  };
+var randomNumber = function (min, max) {
+  return Math.floor(Math.random() * (max - min)) + min;
+};
 
-  var cpuPick = function () {
-    gameState.rivalPokemon = pokemonsEl[randomNumber(0, 3)].dataset.pokemon;
-  };
+var cpuPick = function () {
+  gameState.rivalPokemon = pokemonsEl[randomNumber(0, 3)].dataset.pokemon;
+};
 
 
 
