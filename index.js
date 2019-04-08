@@ -26,7 +26,7 @@ var pokemonDB = [{
     level: 1,
     img: 'http://www.smogon.com/dex/media/sprites/xy/squirtle.gif'
   }
-]
+];
 // state
 var gameState = {
   userPokemon: '',
@@ -35,7 +35,7 @@ var gameState = {
 console.log(gameState)
 
 // elements
-var pokemonsEl = document.querySelector('.select-screen').querySelectorAll('.character')
+var pokemonsEl = document.querySelector('.select-screen').querySelectorAll('.character');
 console.log(pokemonsEl)
 var battleScreenEl = document.getElementById('battle-screen')
 var attackBtnsEl = document.getElementById('battle-screen').querySelectorAll('.attack')
@@ -43,6 +43,7 @@ console.log(attackBtnsEl)
 
 // this is the initial loop
 var i = 0;
+
 while (i < pokemonsEl.length) {
   // add function to all characters on screen select
   pokemonsEl[i].onclick = function () {
@@ -73,7 +74,11 @@ while (i < pokemonsEl.length) {
     })
     player2Img[0].src = gameState.currentRivalPokemon[0].img
 
+    // current user and cpu pokemon initial health
+
     gameState.currentPokemon[0].health = calculateInitialHealth(gameState.currentPokemon)
+    gameState.currentRivalPokemon[0].health = calculateInitialHealth(gameState.currentRivalPokemon)
+
     console.log(gameState)
     // user choose attack
 
@@ -115,8 +120,8 @@ var cpuAttack = function () {
   return attacks[randomNumber(0, 3)]
 }
 
-var calculateHealth = function(user){
-  
+var calculateHealth = function (user) {
+
   return ((0.20 * Math.sqrt(user[0].level)) * user[0].defense) * user[0].hp
 }
 
